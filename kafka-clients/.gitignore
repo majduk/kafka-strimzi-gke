@@ -1,0 +1,6 @@
+ca.crt
+ca.password
+client.properties
+sasl_config
+truststore
+user_password

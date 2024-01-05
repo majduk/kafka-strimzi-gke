@@ -1,0 +1,12 @@
+/**
+ * Copyright 2023 Google. This software is provided as-is,
+ * without warranty or representation for any use or purpose.
+ * Your use of it is subject to your agreement with Google.
+ */
+
+terraform {
+  backend "gcs" {
+    bucket = "{{ tfstate_bucket_name }}" # use your bucket name here
+    impersonate_service_account = "{{ terraform_sa }}"
+  }
+}

@@ -1,0 +1,8 @@
+terraform_sa         = "terraform@myproject.org"
+tfstate_bucket_name  = "mytfstate"   
+org_id               = "000000000000"         # format "000000000000"
+parent_folder_name   = "sandbox"
+billing_account      = "000000-000000-000000" # format "000000-000000-000000"
+region               = "us-central1"
+project_name         = "play1"
+outputs_location     = "../"
