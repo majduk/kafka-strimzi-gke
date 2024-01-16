@@ -15,10 +15,10 @@
  */
 
 provider "google" {
-  impersonate_service_account = "{{ terraform_sa }}"
+  impersonate_service_account = "{{ automation_sa }}"
 }
 provider "google-beta" {
-  impersonate_service_account = "{{ terraform_sa }}"
+  impersonate_service_account = "{{ automation_sa }}"
 }
 
 # end provider.tf for bootstrap

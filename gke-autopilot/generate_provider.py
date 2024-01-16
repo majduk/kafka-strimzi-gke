@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
-import hcl
+import json
 from jinja2 import Template
 import glob
 
-with open("terraform.tfvars", "r") as tfvars_in:
-      tfvars = hcl.load(tfvars_in)
+with open("terraform.tfvars.json", "r") as tfvars_in:
+      tfvars = json.load(tfvars_in)
 
 for tfname in glob.glob("./*.j2"):
     with open(tfname, "r") as f:

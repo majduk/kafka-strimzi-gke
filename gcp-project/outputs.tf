@@ -19,8 +19,10 @@ locals {
     project_id     	= module.data_project.project_id
     worker_sa      	= google_service_account.worker_sa.email
     automation_sa      	= google_service_account.automation_sa.email
-    network_self_link   = module.vpc.network_self_link
-    subnetwork_self_link= module.vpc.subnets_self_links[0]
+    network             = module.vpc.network_name
+    subnetwork          = module.vpc.subnets_names[0]
+    ip_range_pods       = module.vpc.subnets_secondary_ranges[0][0].range_name
+    ip_range_svcs       = module.vpc.subnets_secondary_ranges[0][1].range_name
     tfstate_bucket 	= google_storage_bucket.tfstate_bucket.name
     region   	 	= var.region
   }

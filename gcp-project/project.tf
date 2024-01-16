@@ -18,13 +18,14 @@ locals {
   ]
   automation_sa_required_roles = [
     "roles/storage.objectAdmin",
-    "role/logging.logWriter", 
-    "role/artifactregistry.Admin", 
+    "roles/logging.logWriter", 
     "roles/container.clusterAdmin", 
-    "role/container.serviceAgent", 
+    "roles/container.serviceAgent", 
     "roles/iam.serviceAccountAdmin", 
     "roles/serviceusage.serviceUsageAdmin", 
-    "roles/iam.serviceAccountAdmin"
+    "roles/iam.serviceAccountAdmin",
+    "roles/artifactregistry.repoAdmin",
+    "roles/artifactregistry.admin",
   ]
   worker_sa_required_roles = [
   ]
@@ -49,7 +50,7 @@ module "vpc" {
 
   subnets = [
     {
-      subnet_name   = "worker-subnetwork"
+      subnet_name   = "worker-${var.region}"
       subnet_ip     = "10.2.3.0/24"
       subnet_region = var.region
       subnet_private_access = true
@@ -57,10 +58,14 @@ module "vpc" {
   ]
 
   secondary_ranges = {
-    dataflow-subnetwork = [
+    ("worker-${var.region}") = [
       {
-        range_name    = "worker-secondary-range"
-        ip_cidr_range = "192.168.128.0/24"
+        range_name    = "worker-pods-${var.region}"
+        ip_cidr_range = "192.168.0.0/18"
+      },
+      {
+        range_name    = "worker-svcs-${var.region}"
+        ip_cidr_range = "192.168.64.0/18"
       },
     ]
   }
