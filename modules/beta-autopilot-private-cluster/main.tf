@@ -82,8 +82,8 @@ locals {
   cluster_output_logging_service                    = google_container_cluster.primary.logging_service
   cluster_output_monitoring_service                 = google_container_cluster.primary.monitoring_service
   cluster_output_network_policy_enabled             = google_container_cluster.primary.addons_config.0.network_policy_config.0.disabled
-  cluster_output_http_load_balancing_enabled        = google_container_cluster.primary.addons_config.0.http_load_balancing.0.disabled
-  cluster_output_horizontal_pod_autoscaling_enabled = google_container_cluster.primary.addons_config.0.horizontal_pod_autoscaling.0.disabled
+  #cluster_output_http_load_balancing_enabled        = google_container_cluster.primary.addons_config.0.http_load_balancing.0.disabled
+  #cluster_output_horizontal_pod_autoscaling_enabled = google_container_cluster.primary.addons_config.0.horizontal_pod_autoscaling.0.disabled
   cluster_output_vertical_pod_autoscaling_enabled   = google_container_cluster.primary.vertical_pod_autoscaling != null && length(google_container_cluster.primary.vertical_pod_autoscaling) == 1 ? google_container_cluster.primary.vertical_pod_autoscaling.0.enabled : false
 
   # BETA features
@@ -115,8 +115,8 @@ locals {
   cluster_min_master_version                 = local.cluster_output_min_master_version
   cluster_logging_service                    = local.cluster_output_logging_service
   cluster_monitoring_service                 = local.cluster_output_monitoring_service
-  cluster_http_load_balancing_enabled        = !local.cluster_output_http_load_balancing_enabled
-  cluster_horizontal_pod_autoscaling_enabled = !local.cluster_output_horizontal_pod_autoscaling_enabled
+  #cluster_http_load_balancing_enabled        = !local.cluster_output_http_load_balancing_enabled
+  #cluster_horizontal_pod_autoscaling_enabled = !local.cluster_output_horizontal_pod_autoscaling_enabled
   cluster_vertical_pod_autoscaling_enabled   = local.cluster_output_vertical_pod_autoscaling_enabled
   workload_identity_enabled                  = !(var.identity_namespace == null || var.identity_namespace == "null")
   cluster_workload_identity_config = !local.workload_identity_enabled ? [] : var.identity_namespace == "enabled" ? [{

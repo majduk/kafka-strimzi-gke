@@ -102,15 +102,15 @@ output "ca_certificate" {
 }
 
 
-output "http_load_balancing_enabled" {
-  description = "Whether http load balancing enabled"
-  value       = local.cluster_http_load_balancing_enabled
-}
+#output "http_load_balancing_enabled" {
+#  description = "Whether http load balancing enabled"
+#  value       = local.cluster_http_load_balancing_enabled
+#}
 
-output "horizontal_pod_autoscaling_enabled" {
-  description = "Whether horizontal pod autoscaling enabled"
-  value       = local.cluster_horizontal_pod_autoscaling_enabled
-}
+#output "horizontal_pod_autoscaling_enabled" {
+#  description = "Whether horizontal pod autoscaling enabled"
+#  value       = local.cluster_horizontal_pod_autoscaling_enabled
+#}
 
 output "vertical_pod_autoscaling_enabled" {
   description = "Whether vertical pod autoscaling enabled"
