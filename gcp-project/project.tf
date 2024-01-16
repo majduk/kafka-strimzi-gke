@@ -71,6 +71,17 @@ module "vpc" {
   }
 }
 
+module "cloud-nat" {
+  source     = "terraform-google-modules/cloud-nat/google"
+  version    = "~> 5.0"
+  project_id   = module.data_project.project_id
+  region     = var.region
+  network    = module.vpc.network_name
+  router     = "worker-rtr-${var.region}"
+  name       = "worker-nat-${var.region}"
+  create_router = true
+}
+
 resource "google_service_account" "worker_sa" {
   project      = module.data_project.project_id
   account_id   = "kafka-sa"
